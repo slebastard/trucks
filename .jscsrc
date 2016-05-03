@@ -1,0 +1,33 @@
+{
+  "disallowNewlineBeforeBlockStatements": true,
+  "disallowMultipleLineBreaks": true,
+  "disallowMultipleLineStrings": true,
+  "disallowSpacesInsideObjectBrackets": true,
+  "disallowSpacesInsideParentheses": true,
+  "disallowSpaceAfterPrefixUnaryOperators": true,
+  "disallowSpacesInsideObjectBrackets": true,
+  "disallowSpacesInsideArrayBrackets": true,
+  "disallowTrailingWhitespace": true,
+  "disallowTrailingComma": true,
+  "requireCamelCaseOrUpperCaseIdentifiers": true,
+  "requireCommaBeforeLineBreak": true,
+  "requireCurlyBraces": true,
+  "requireSpaceAfterBinaryOperators": true,
+  "requireSpaceBeforeBinaryOperators": true,
+  "requireSpacesInAnonymousFunctionExpression": {
+    "beforeOpeningCurlyBrace": true
+  },
+  "validateIndentation":2,
+  "excludeFiles": [
+    "bower_components/**",
+    "node_modules/**",
+    "helpers/**",
+    "hooks/**",
+    "platforms/**",
+    "resources/**",
+    "gulpfile.js",
+    "karma.conf.js",
+    "www/**",
+    ".git/**"
+  ]
+}
