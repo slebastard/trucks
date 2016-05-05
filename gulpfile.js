@@ -12,6 +12,7 @@ var open = require('open');
 var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
 var stylish = require('gulp-jscs-stylish');
+var jasmine = require('gulp-jasmine');
 var connectLr = require('connect-livereload');
 var streamqueue = require('streamqueue');
 var runSequence = require('run-sequence');
@@ -201,7 +202,8 @@ gulp.task('vendor', function() {
 });
 
 gulp.task('tests', function() {
-  //TODO add jasmine
+  gulp.src('tests/**/*.js')
+    .pipe(plugins.jasmine())
 });
 
 

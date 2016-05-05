@@ -20,6 +20,7 @@
     "gulp-iconfont-css": "2.0.0",
     "gulp-if": "^2.0.0",
     "gulp-inject": "^3.0.0",
+    "gulp-jasmine": "^2.3.0",
     "gulp-jscs": "^3.0.2",
     "gulp-jscs-stylish": "^1.4.0",
     "gulp-jshint": "^2.0.0",
