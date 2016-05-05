@@ -16,9 +16,9 @@ angular.module('Trucks')
       ExampleService.doSomethingAsync()
         .then(ExampleService.fetchSomethingFromServer)
         .then(function(response) {
-            $scope.myHTML = response.data.text;
-            // close pull to refresh loader
-            $scope.$broadcast('scroll.refreshComplete');
+          $scope.myHTML = response.data.text;
+          // close pull to refresh loader
+          $scope.$broadcast('scroll.refreshComplete');
         });
     };
 

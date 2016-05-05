@@ -17,6 +17,7 @@
   "requireSpacesInAnonymousFunctionExpression": {
     "beforeOpeningCurlyBrace": true
   },
+  "maxErrors": null,
   "validateIndentation":2,
   "excludeFiles": [
     "bower_components/**",

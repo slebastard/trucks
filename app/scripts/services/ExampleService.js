@@ -22,7 +22,7 @@ angular.module('Trucks')
       return $http({
           url: 'http://hipsterjesus.com/api',
           params: {
-              paras: 2
+            paras: 2
           },
           method: 'GET'
         })

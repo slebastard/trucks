@@ -9,7 +9,9 @@ var beep = require('beepbeep');
 var express = require('express');
 var path = require('path');
 var open = require('open');
-var stylish = require('jshint-stylish');
+var jscs = require('gulp-jscs');
+var jshint = require('gulp-jshint');
+var stylish = require('gulp-jscs-stylish');
 var connectLr = require('connect-livereload');
 var streamqueue = require('streamqueue');
 var runSequence = require('run-sequence');
@@ -172,13 +174,13 @@ gulp.task('images', function() {
     .on('error', errorHandler);
 });
 
-
-// lint js sources based on .jshintrc ruleset
-gulp.task('jsHint', function(done) {
+gulp.task('jsStyle', function(done) {
   return gulp
-    .src('app/scripts/**/*.js')
-    .pipe(plugins.jshint())
-    .pipe(plugins.jshint.reporter(stylish))
+    .src(['app/scripts/**/*.js', 'tests/**/*.js'])
+    .pipe(plugins.jshint('.jshintrc'))
+    .pipe(plugins.jscs())
+    .pipe(stylish.combineWithHintResults())
+    .pipe(plugins.jshint.reporter('jshint-stylish'))
 
     .on('error', errorHandler);
     done();
@@ -198,9 +200,13 @@ gulp.task('vendor', function() {
     .on('error', errorHandler);
 });
 
+gulp.task('tests', function() {
+  //TODO add jasmine
+});
+
 
 // inject the files in index.html
-gulp.task('index', ['jsHint', 'scripts'], function() {
+gulp.task('index', ['jsStyle', 'scripts', 'tests'], function() {
 
   // build has a '-versionnumber' suffix
   var cssNaming = 'styles/main*';
@@ -296,6 +302,7 @@ gulp.task('watchers', function() {
   gulp.watch('app/icons/**', ['iconfont']);
   gulp.watch('app/images/**', ['images']);
   gulp.watch('app/scripts/**/*.js', ['index']);
+  gulp.watch('tests/**/*.js', ['jsStyle', 'tests']);
   gulp.watch('./bower.json', ['vendor']);
   gulp.watch('app/templates/**/*.html', ['index']);
   gulp.watch('app/index.html', ['index']);

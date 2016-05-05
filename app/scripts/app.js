@@ -9,7 +9,6 @@
  * Main module of the application.
  */
 
-
 angular.module('Trucks', ['ionic', 'ngCordova', 'ngResource'])
 
   .run(function($ionicPlatform) {
@@ -55,9 +54,6 @@ angular.module('Trucks', ['ionic', 'ngCordova', 'ngResource'])
         }
       });
 
-
     // redirects to default route for undefined routes
     $urlRouterProvider.otherwise('/app/home');
   });
-
-

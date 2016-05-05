@@ -9,7 +9,6 @@
  * Is used inside /services/ApiService.js to generate correct endpoint dynamically
  */
 
-
 angular.module('Trucks')
 
   // development
@@ -19,7 +18,6 @@ angular.module('Trucks')
     path: '',
     needsAuth: false
   });
-
 
   // live example with HTTP Basic Auth
   /*
