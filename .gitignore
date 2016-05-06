@@ -11,3 +11,7 @@ www/
 .sass-cache
 *.DS_Store
 *.log
+
+*~
+*.swp
+*.swo
