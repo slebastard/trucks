@@ -7,9 +7,7 @@
  * # SettingsController
  */
 angular.module('Trucks')
-  .controller('TrucksController', function($scope, $window, RestaurantsAPI) {
-    $scope.windowWidth = $window.innerWidth;
-    $scope.windowHeight = $window.innerHeight;
+  .controller('TrucksController', function($scope, RestaurantsAPI) {
     RestaurantsAPI.getRestaurants(function(error, data) {
       if (error) {
         throw error;

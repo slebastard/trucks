@@ -7,9 +7,7 @@
  * # SettingsController
  */
 angular.module('Trucks')
-  .controller('TrucksDescriptionController', function($scope, $stateParams, $window) {
-    $scope.windowWidth = $window.innerWidth;
-    $scope.windowHeight = $window.innerHeight;
+  .controller('TrucksDescriptionController', function($scope, $stateParams) {
     $scope.restaurant = $stateParams.restaurant;
     $scope.uniquePrice = 7.50;
     $scope.restaurant.dishes.forEach(function(dish) {
