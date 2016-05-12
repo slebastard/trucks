@@ -43,6 +43,16 @@ angular.module('Trucks', ['ionic', 'ngCordova', 'ngResource'])
           }
         }
       })
+      .state('app.maps', {
+        url: '/maps',
+        cache: true,
+        views: {
+          'viewContent': {
+            templateUrl: 'templates/views/maps.html',
+            controller: 'MapsController'
+          }
+        }
+      })
       .state('app.settings', {
         url: '/settings',
         cache: true,
