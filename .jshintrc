@@ -30,6 +30,9 @@
     "after": false,
     "afterEach": false,
     "expect": false,
+    "jasmine": false,
+    /* Angular Mocks */
+    "inject": false,
     /* lodash */
     "_": false
   }

@@ -12,13 +12,13 @@ var open = require('open');
 var jscs = require('gulp-jscs');
 var jshint = require('gulp-jshint');
 var stylish = require('gulp-jscs-stylish');
-var jasmine = require('gulp-jasmine');
 var connectLr = require('connect-livereload');
 var streamqueue = require('streamqueue');
 var runSequence = require('run-sequence');
 var merge = require('merge-stream');
 var ripple = require('ripple-emulator');
 var wiredep = require('wiredep');
+var karma = require('karma');
 
 /**
  * Parse arguments
@@ -41,7 +41,7 @@ var port = args.port;
 var stripDebug = !!args.stripDebug;
 var targetDir = path.resolve(build ? 'www' : '.tmp');
 
-// if we just use emualate or run without specifying platform, we assume iOS
+// if we just use emualate or run without testifying platform, we assume iOS
 // in this case the value returned from yargs would just be true
 if (emulate === true) {
     emulate = 'ios';
@@ -177,7 +177,7 @@ gulp.task('images', function() {
 
 gulp.task('jsStyle', function(done) {
   return gulp
-    .src(['app/scripts/**/*.js', 'tests/**/*.js'])
+    .src(['app/scripts/**/*.js', 'test/**/*.js'])
     .pipe(plugins.jshint('.jshintrc'))
     .pipe(plugins.jscs())
     .pipe(stylish.combineWithHintResults())
@@ -201,14 +201,29 @@ gulp.task('vendor', function() {
     .on('error', errorHandler);
 });
 
-gulp.task('tests', function() {
-  gulp.src('tests/**/*.js')
-    .pipe(plugins.jasmine())
+gulp.task('karma', function(done) {
+  var vendorFiles = wiredep().js;
+  var sources = vendorFiles.concat([
+    // scripts
+    'app/scripts/app.js',
+    'app/scripts/**/*.js',
+
+    // tests
+    'test/**/*.js'
+  ]);
+  var parameters = {
+    configFile: __dirname + '/karma.conf.js',
+    files: sources,
+    browsers: ['PhantomJS'],
+    singleRun: true
+  }
+  new karma.Server(parameters, function() {done()}).start();
 });
 
+gulp.task('test', ['karma']);
 
 // inject the files in index.html
-gulp.task('index', ['jsStyle', 'scripts', 'tests'], function() {
+gulp.task('index', ['jsStyle', 'scripts', 'test'], function() {
 
   // build has a '-versionnumber' suffix
   var cssNaming = 'styles/main*';
@@ -303,11 +318,12 @@ gulp.task('watchers', function() {
   gulp.watch('app/fonts/**', ['fonts']);
   gulp.watch('app/icons/**', ['iconfont']);
   gulp.watch('app/images/**', ['images']);
-  gulp.watch('app/scripts/**/*.js', ['index']);
-  gulp.watch('tests/**/*.js', ['jsStyle', 'tests']);
+  gulp.watch('app/scripts/**/*.js', ['index', 'test']);
+  gulp.watch('test/**/*.js', ['jsStyle', 'test']);
   gulp.watch('./bower.json', ['vendor']);
   gulp.watch('app/templates/**/*.html', ['index']);
   gulp.watch('app/index.html', ['index']);
+  gulp.watch('.jshintrc', ['index']);
   gulp.watch(targetDir + '/**')
     .on('change', plugins.livereload.changed)
     .on('error', errorHandler);

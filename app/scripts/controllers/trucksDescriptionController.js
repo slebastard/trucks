@@ -9,21 +9,13 @@
 angular.module('Trucks')
   .controller('TrucksDescriptionController', function($scope, $stateParams) {
 
-    console.log($stateParams);
-    $scope.dishes = [
-      {
-        id: 0,
-        name: 'Plat 1',
-        count: 0
-      },
-      {
-        id: 1,
-        name: 'Plat 2',
-        count: 0
-      }
-    ];
+    $scope.restaurant = $stateParams.restaurant;
 
-    $scope.incCount = function(id) {
-      $scope.dishes[id].count++;
+    $scope.restaurant.dishes.forEach(function(dish) {
+      dish.count = 0;
+    });
+
+    $scope.incCount = function(dish) {
+      dish.count++;
     };
   });

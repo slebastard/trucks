@@ -10,6 +10,7 @@
  */
 
 angular.module('Trucks', ['ionic', 'ngCordova', 'ngResource'])
+  .value('version', 'v0.0')
 
   .run(function($ionicPlatform) {
 
