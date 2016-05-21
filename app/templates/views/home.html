@@ -1,19 +1,23 @@
 <ion-view>
     <ion-header-bar align-title="center" class="bar-positive">
     <button class="button button-icon icon ion-navicon" menu-toggle="left"></button>
-        <h1 class="title">trucks</h1>
+        <h1 class="title">saladbOwl</h1>
     </ion-header-bar>
 
     <ion-content>
-        <ion-refresher
-            pulling-text="Pull to refresh..."
-            on-refresh="fetchRandomText()">
-        </ion-refresher>
-        <div class="loader" ng-if="!myHTML">
-            <ion-spinner></ion-spinner>
+
+        <div class="card">
+            <div class="item item-text-wrap">
+                <a ui-sref-active="active" ui-sref="app.map">Around you</a>
+            </div>
         </div>
-        <div class="content" ng-bind-html="myHTML">
+
+        <div class="card">
+            <div class="item item-text-wrap">
+                <a ui-sref-active="active" ui-sref="app.trucks">Trucks list<a/>
+            </div>
         </div>
+
     </ion-content>
 
 </ion-view>

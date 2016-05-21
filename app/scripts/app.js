@@ -43,6 +43,26 @@ angular.module('Trucks', ['ionic', 'ngCordova', 'ngResource'])
           }
         }
       })
+      .state('app.around', {
+        url: '/around',
+        cache: true,
+        views: {
+          'viewContent': {
+            templateUrl: 'templates/views/map.html',
+            controller: 'MapController'
+          }
+        }
+      })
+      .state('app.cart', {
+        url: '/cart',
+        cache: true,
+        views: {
+          'viewContent': {
+            templateUrl: 'templates/views/cart.html',
+            controller: 'CartController'
+          }
+        }
+      })
       .state('app.settings', {
         url: '/settings',
         cache: true,
@@ -50,6 +70,29 @@ angular.module('Trucks', ['ionic', 'ngCordova', 'ngResource'])
           'viewContent': {
             templateUrl: 'templates/views/settings.html',
             controller: 'SettingsController'
+          }
+        }
+      })
+      .state('app.trucks', {
+        url: '/trucks',
+        cache: true,
+        views: {
+          'viewContent': {
+            templateUrl: 'templates/views/trucks.html',
+            controller: 'TrucksController'
+          }
+        }
+      })
+      .state('app.trucksDescription', {
+        url: '/trucksDescription',
+        cache: true,
+        params: {
+          restaurant: null
+        },
+        views: {
+          'viewContent': {
+            templateUrl: 'templates/views/trucksDescription.html',
+            controller: 'TrucksDescriptionController'
           }
         }
       });

@@ -7,7 +7,7 @@
  * # MainController
  */
 angular.module('Trucks')
-  .controller('MainController', function($scope) {
+  .controller('MainController', function() {
 
     // do something with $scope
 
