@@ -95,6 +95,16 @@ angular.module('Trucks', ['ionic', 'ngCordova', 'ngResource'])
             controller: 'TrucksDescriptionController'
           }
         }
+      })
+      .state('app.sandbox', {
+        url: '/sandbox',
+        cache: true,
+        views: {
+          'viewContent': {
+            templateUrl: 'templates/views/sandbox.html',
+            controller: 'SandboxController'
+          }
+        }
       });
 
     // redirects to default route for undefined routes

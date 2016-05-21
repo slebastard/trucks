@@ -7,7 +7,7 @@
  * # SettingsController
  */
 angular.module('Trucks')
-  .controller('TrucksController', function($scope) {
+  .controller('TrucksController', function($scope, RestaurantsAPI) {
 
     $scope.restaurants = [
       {
