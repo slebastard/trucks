@@ -83,9 +83,12 @@ angular.module('Trucks', ['ionic', 'ngCordova', 'ngResource'])
           }
         }
       })
-      .state('app.trucks.description', {
-        url: '/description',
+      .state('app.trucksDescription', {
+        url: '/trucksDescription',
         cache: true,
+        params: {
+          restaurant: null
+        },
         views: {
           'viewContent': {
             templateUrl: 'templates/views/trucksDescription.html',

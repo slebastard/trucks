@@ -7,7 +7,7 @@
  * # HomeController
  */
 angular.module('Trucks')
-  .controller('HomeController', function($scope, ExampleService) {
+  .controller('HomeController', function($scope) {
 
     $scope.myHTML = null;
 

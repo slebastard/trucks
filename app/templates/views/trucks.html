@@ -6,24 +6,13 @@
 
     <ion-content>
 
+      <div ng-repeat="restaurant in restaurants">
         <div class="card">
             <div class="item item-text-wrap">
-                <a ui-sref="app.trucks.description">Truck 1</a>
+              <a ui-sref-active="active" ui-sref="app.trucksDescription({restaurant: {{restaurant}}})">{{restaurant.name}}</a>
             </div>
         </div>
-
-        <div class="card">
-            <div class="item item-text-wrap">
-                <a ui-sref="app.trucks.description">Truck 2</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="item item-text-wrap">
-                <a ui-sref="app.trucks.description">Truck 3</a>
-            </div>
-        </div>
-
+      </div>
 
     </ion-content>
 
