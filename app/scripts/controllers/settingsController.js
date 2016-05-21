@@ -7,7 +7,7 @@
  * # SettingsController
  */
 angular.module('Trucks')
-  .controller('SettingsController', function($scope) {
+  .controller('SettingsController', function() {
 
     // do something with $scope
 

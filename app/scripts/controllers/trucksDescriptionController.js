@@ -7,17 +7,23 @@
  * # SettingsController
  */
 angular.module('Trucks')
-  .controller('TrucksDescriptionController', function($scope) {
+  .controller('TrucksDescriptionController', function($scope, $stateParams) {
 
-  	$scope.numberItems = 2;
-	$scope.dishes = {
-		{ ID: 0, name: "Plat 1", count: 0}
-		{ ID: 1, name: "Plat 2", count: 0}
-	};
-  	
-  $scope.incCount = function(ID)
-  {
-	  $scope.dishes[ID].count++;
-  }
+    console.log($stateParams);
+    $scope.dishes = [
+      {
+        id: 0,
+        name: 'Plat 1',
+        count: 0
+      },
+      {
+        id: 1,
+        name: 'Plat 2',
+        count: 0
+      }
+    ];
 
-})
+    $scope.incCount = function(id) {
+      $scope.dishes[id].count++;
+    };
+  });
