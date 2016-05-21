@@ -16,6 +16,12 @@ angular.module('Trucks')
       });
     };
 
+    var getRestaurants = function(callback) {
+      get('restaurants/restaurants.json', function(error, data) {
+        callback(error, data.data);
+      });
+    };
+
     var get = function(requestURL, callback) {
       $http.get(serverURL + requestURL)
         .success(function(data) {
@@ -27,6 +33,7 @@ angular.module('Trucks')
     };
 
     return {
-      testConnection: testConnection
+      testConnection: testConnection,
+      getRestaurants: getRestaurants
     };
   });

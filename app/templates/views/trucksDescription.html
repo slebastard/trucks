@@ -2,9 +2,24 @@
   <ion-header-bar align-title="center" class="bar-positive">
     <button class="button button-icon icon ion-home" ui-sref="app.home"></button>
     <h1 class="title">{{restaurant.name}}</h1>
+    <button class="button button-icon icon ion-android-done" ui-sref="app.order"></button>
   </ion-header-bar>
 
   <ion-content>
+
+    <div class="card">
+      <div class="item item-divider">
+        <i class="icon ion-ios-telephone-outline"></i>
+        {{restaurant.tel}}
+      </div>
+      <div class="item item-text-wrap">
+        {{restaurant.description}}
+      </div>
+      <div class="item item-divider">
+        <i class="icon ion-android-pin"></i>
+        {{restaurant.address}}
+      </div>
+    </div>
 
     <div ng-repeat="dish in restaurant.dishes">
       <div class="list card">
@@ -14,15 +29,19 @@
           <p>{{dish.description}}</p>
         </div>
 
-        <div class="item item-image">
-          <img src="{{dish.imageUrl}}">
+        <div class="item item-image" ng-if="dish.imageUrl">
+          <img class="dish" src="{{dish.imageUrl}}" width="{{windowWidth}}">
+        </div>
+
+        <div class="item item-image" ng-if="!dish.imageUrl">
+          <img class="dish" src="images/dishes/defaultDish.jpg" width="{{windowWidth}}">
         </div>
 
         <p class="item item-icon-left assertive">
         <i class="icon ion-plus-round" ng-click="incCount(dish)"></i>
-        Order
         </p>
-        <p>{{dish.count}}</p>
+        <p>{{dish.count}} plates</p>
+
 
       </div>
     </div>
