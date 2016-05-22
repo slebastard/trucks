@@ -19,6 +19,7 @@ var merge = require('merge-stream');
 var ripple = require('ripple-emulator');
 var wiredep = require('wiredep');
 var karma = require('karma');
+var replace = require('replace');
 
 /**
  * Parse arguments
@@ -98,6 +99,25 @@ gulp.task('styles', function() {
     .on('error', errorHandler);
 });
 
+gulp.task('serve-local', function() {
+  return replace({
+    regex: "https://saladbowl-server.herokuapp.com/",
+    replacement: "http://0.0.0.0:5000/",
+    paths: ['./app/scripts/**/*.js'],
+    recursive: false,
+    silent: false,
+  });
+})
+
+gulp.task('serve-heroku', function() {
+  return replace({
+    regex: "https://0.0.0.0:5000/",
+    replacement: "http://saladbowl-server.herokuapp.com/",
+    paths: ['./app/scripts/**/*.js'],
+    recursive: false,
+    silent: false,
+  });
+})
 
 // build templatecache, copy scripts.
 // if build: concat, minsafe, uglify and versionize

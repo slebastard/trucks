@@ -7,12 +7,14 @@
  * # SettingsController
  */
 angular.module('Trucks')
-  .controller('TrucksController', function($scope, RestaurantsAPI) {
-    RestaurantsAPI.getRestaurants(function(error, data) {
-      if (error) {
-        throw error;
-      }
-      $scope.restaurants = data;
-    });
+  .controller('TrucksController', function($scope, RestaurantsAPI, $ionicHistory) {
+    RestaurantsAPI.getRestaurants()
+      .success(function(data) {
+        $scope.restaurants = data.data;
+      });
+
+    $scope.goBack = function() {
+      $ionicHistory.goBack();
+    };
 
   });

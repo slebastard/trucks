@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 
-angular.module('Trucks', ['ionic', 'ngCordova', 'ngResource'])
+angular.module('Trucks', ['ionic', 'ngCordova', 'ngResource', 'ngCordovaOauth', 'ionic-native-transitions'])
   .value('version', 'v0.0')
 
   .run(function($ionicPlatform) {
@@ -22,9 +22,19 @@ angular.module('Trucks', ['ionic', 'ngCordova', 'ngResource'])
 
   })
 
-  .config(function($httpProvider, $stateProvider, $urlRouterProvider) {
+  .config(function($httpProvider, $stateProvider, $urlRouterProvider, $ionicConfigProvider, $ionicNativeTransitionsProvider) {
     // register $http interceptors, if any. e.g.
     // $httpProvider.interceptors.push('interceptor-name');
+
+    $ionicConfigProvider.views.transition('none');
+    $ionicNativeTransitionsProvider.setDefaultTransition({
+      type: 'slide',
+      direction: 'left'
+    });
+    $ionicNativeTransitionsProvider.setDefaultBackTransition({
+      type: 'slide',
+      direction: 'right'
+    });
 
     // Application routing
     $stateProvider

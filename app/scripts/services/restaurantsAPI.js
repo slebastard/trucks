@@ -1,39 +1,81 @@
 'use strict';
 
 angular.module('Trucks')
-  .factory('RestaurantsAPI', function RestaurantsAPI($http) {
-    //var serverURL = 'http://0.0.0.0:5000/';
+  .factory('RestaurantsAPI', function RestaurantsAPI($http, $q) {
     var serverURL = 'https://saladbowl-server.herokuapp.com/';
 
-    var testConnection = function(callback) {
-      get('restaurants/test.json', function(error, data) {
-        var expectedData = {
-          test: 'test',
-          test2: 'test2'
-        };
+    var testConnection = function() {
+      var deferred = $q.defer();
+      var promise = deferred.promise;
 
-        callback(error, _.isEqual(data, expectedData));
-      });
-    };
-
-    var getRestaurants = function(callback) {
-      get('restaurants/restaurants.json', function(error, data) {
-        callback(error, data.data);
-      });
-    };
-
-    var get = function(requestURL, callback) {
-      $http.get(serverURL + requestURL)
-        .success(function(data) {
-          callback(null, data);
+      get('restaurants/test.json')
+        .success(function(data, status, headers, config) {
+          var expectedData = {
+            test: 'test',
+            test2: 'test2'
+          };
+          if (_.isEqual(data, expectedData)) {
+            deferred.resolve({
+              data: data,
+              status: status,
+              headers: headers,
+              config: config
+            });
+          }
+          else {
+            deferred.reject({
+              data: data,
+              status: status,
+              headers: headers,
+              config: config
+            });
+          }
         })
-        .error(function(error) {
-          callback(error, null);
+        .error(function(data, status, headers, config) {
+          deferred.reject({
+            data: data,
+            status: status,
+            headers: headers,
+            config: config
+          });
         });
+
+      promise.success = function(fn) {
+        promise.then(fn);
+        return promise;
+      };
+
+      promise.error = function(fn) {
+        promise.then(null, fn);
+        return promise;
+      };
+
+      return promise;
+    };
+
+    var get = function(requestURL) {
+      var url = serverURL + requestURL;
+      return $http({
+        method: 'GET',
+        url: url
+      });
+    };
+
+    var post = function(requestURL, data) {
+      var url = serverURL + requestURL;
+      return $http({
+        method: 'POST',
+        url: url,
+        data: data
+      });
+    };
+
+    var getFactory = function(url) {
+      return function() {return get(url);};
     };
 
     return {
       testConnection: testConnection,
-      getRestaurants: getRestaurants
+      getRestaurants: getFactory('restaurants/restaurants.json')
     };
   });
