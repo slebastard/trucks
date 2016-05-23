@@ -7,64 +7,14 @@
  * # SettingsController
  */
 angular.module('Trucks')
-  .controller('TrucksController', function($scope) {
-
-    $scope.restaurants = [
-      {
-        id: 0,
-        name: 'restaurant 1',
-        dishes: [
-        {
-          id: 0,
-          name: 'Plat 1',
-          description: 'description',
-          imageUrl: 'https://static.pexels.com/photos/5938/food-salad-healthy-lunch.jpg'
-        },
-        {
-          id: 1,
-          name: 'Plat 2',
-          description: 'description',
-          imageUrl: 'https://static.pexels.com/photos/5938/food-salad-healthy-lunch.jpg'
-        }
-        ]
-      },
-      {
-        id: 1,
-        name: 'restaurant 2',
-        dishes: [
-        {
-          id: 0,
-          name: 'Plat 1',
-          description: 'description',
-          imageUrl: 'https://static.pexels.com/photos/5938/food-salad-healthy-lunch.jpg'
-        },
-        {
-          id: 1,
-          name: 'Plat 2',
-          description: 'description',
-          imageUrl: 'https://static.pexels.com/photos/5938/food-salad-healthy-lunch.jpg'
-        }
-        ]
-      },
-      {
-        id: 2,
-        name: 'restaurant 3',
-        dishes: [
-        {
-          id: 0,
-          name: 'Plat 1',
-          description: 'description',
-          imageUrl: 'https://static.pexels.com/photos/5938/food-salad-healthy-lunch.jpg'
-        },
-        {
-          id: 1,
-          name: 'Plat 2',
-          description: 'description',
-          imageUrl: 'https://static.pexels.com/photos/5938/food-salad-healthy-lunch.jpg'
-        }
-        ]
+  .controller('TrucksController', function($scope, $window, RestaurantsAPI) {
+    $scope.windowWidth = $window.innerWidth;
+    $scope.windowHeight = $window.innerHeight;
+    RestaurantsAPI.getRestaurants(function(error, data) {
+      if (error) {
+        throw error;
       }
-    ];
-    // do something with $scope
+      $scope.restaurants = data;
+    });
 
   });

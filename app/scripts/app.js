@@ -10,6 +10,7 @@
  */
 
 angular.module('Trucks', ['ionic', 'ngCordova', 'ngResource'])
+  .value('version', 'v0.0')
 
   .run(function($ionicPlatform) {
 
@@ -93,6 +94,29 @@ angular.module('Trucks', ['ionic', 'ngCordova', 'ngResource'])
           'viewContent': {
             templateUrl: 'templates/views/trucksDescription.html',
             controller: 'TrucksDescriptionController'
+          }
+        }
+      })
+      .state('app.sandbox', {
+        url: '/sandbox',
+        cache: true,
+        views: {
+          'viewContent': {
+            templateUrl: 'templates/views/sandbox.html',
+            controller: 'SandboxController'
+          }
+        }
+      })
+      .state('app.order', {
+        url: '/order',
+        cache: true,
+        params: {
+          restaurant: null
+        },
+        views: {
+          'viewContent': {
+            templateUrl: 'templates/views/order.html',
+            controller: 'OrderController'
           }
         }
       });
