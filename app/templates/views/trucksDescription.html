@@ -29,20 +29,23 @@
           <p>{{dish.description}}</p>
         </div>
 
-        <div class="item item-image" ng-if="dish.imageUrl">
-          <img class="dish" src="{{dish.imageUrl}}" width="{{windowWidth}}">
+        <div class="item item-image dish" ng-if="dish.imageUrl">
+          <img src="{{dish.imageUrl}}" width="{{windowWidth}}">
         </div>
 
-        <div class="item item-image" ng-if="!dish.imageUrl">
-          <img class="dish" src="images/dishes/defaultDish.jpg" width="{{windowWidth}}">
+        <div class="item item-image dish" ng-if="!dish.imageUrl">
+          <img src="images/dishes/defaultDish.jpg" width="{{windowWidth}}">
         </div>
 
-        <p class="item item-icon-left assertive">
-        <i class="icon ion-plus-round" ng-click="incCount(dish)"></i>
+        <p class="item item-icon assertive">
+          <i class="icon ion-android-add" ng-click="incCount(dish)"></i>
+          <i class="icon ion-android-remove" ng-click="decCount(dish)"></i>
+          <i class="icon ion-android-close" ng-click="resetCount(dish)"></i>
+          {{dish.count}} plates
         </p>
-        <p>{{dish.count}} plates</p>
-
-
+        <p>
+          Total: {{dish.total}}
+        </p>
       </div>
     </div>
   </ion-content>

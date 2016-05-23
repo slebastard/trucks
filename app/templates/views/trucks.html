@@ -8,9 +8,17 @@
 
       <div ng-repeat="restaurant in restaurants">
         <div class="card">
-            <div class="item item-text-wrap">
-              <a ui-sref-active="active" ui-sref="app.trucksDescription({restaurant: {{restaurant}}})">{{restaurant.name}}</a>
-            </div>
+          <div class="item item-text-wrap restaurant" >
+            <a ui-sref-active="active" ui-sref="app.trucksDescription({restaurant: {{restaurant}}})">
+              {{restaurant.name}}
+            </a>
+          </div>
+          <div class="item item-image context" ng-if="restaurant.imageUrl">
+            <img src="{{dish.imageUrl}}" width="{{windowWidth}}">
+          </div>
+          <div class="item item-image context" ng-if="!restaurant.imageUrl">
+            <img src="images/dishes/defaultDish.jpg" width="{{windowWidth}}">
+          </div>
         </div>
       </div>
 

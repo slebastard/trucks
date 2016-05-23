@@ -10,5 +10,5 @@ angular.module('Trucks')
       else {
         $scope.connection = 'Oups on a pas réussi à se connecter!';
       }
-    })
+    });
   });
