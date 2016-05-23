@@ -1,6 +1,6 @@
 <ion-view>
-  <ion-header-bar align-title="center" class="bar-positive">
-    <button class="button button-icon icon ion-home" ui-sref="app.home"></button>
+    <ion-header-bar align-title="center" class="bar-positive">
+      <button class="button button-icon icon ion-chevron-left" ng-click="goBack()"></button>
     <h1 class="title">{{restaurant.name}}</h1>
     <button class="button button-icon icon ion-android-done" ui-sref="app.order"></button>
   </ion-header-bar>
@@ -30,11 +30,11 @@
         </div>
 
         <div class="item item-image dish" ng-if="dish.imageUrl">
-          <img src="{{dish.imageUrl}}" width="{{windowWidth}}">
+          <img src="{{dish.imageUrl}}">
         </div>
 
         <div class="item item-image dish" ng-if="!dish.imageUrl">
-          <img src="images/dishes/defaultDish.jpg" width="{{windowWidth}}">
+          <img src="images/dishes/defaultDish.jpg">
         </div>
 
         <p class="item item-icon assertive">

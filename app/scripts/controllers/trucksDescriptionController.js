@@ -7,9 +7,8 @@
  * # SettingsController
  */
 angular.module('Trucks')
-  .controller('TrucksDescriptionController', function($scope, $stateParams, $window) {
-    $scope.windowWidth = $window.innerWidth;
-    $scope.windowHeight = $window.innerHeight;
+  .controller('TrucksDescriptionController', function($scope, $stateParams, $ionicHistory) {
+
     $scope.restaurant = $stateParams.restaurant;
     $scope.uniquePrice = 7.50;
     $scope.restaurant.dishes.forEach(function(dish) {
@@ -32,5 +31,9 @@ angular.module('Trucks')
 
     $scope.resetCount = function(dish) {
       dish.count = 0;
+    };
+
+    $scope.goBack = function() {
+      $ionicHistory.goBack();
     };
   });

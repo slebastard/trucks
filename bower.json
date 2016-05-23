@@ -11,7 +11,9 @@
     "angular-resource": "~1.4.8",
     "ionic": "~1.2.1",
     "lodash": "^4.12.0",
-    "angular-mocks": "^1.5.5"
+    "angular-mocks": "^1.5.5",
+    "ng-cordova-oauth": "https://github.com/ArnaudParan/ng-cordova-oauth.git#development",
+    "ionic-native-transitions": "shprink/ionic-native-transitions#^1.0.0-rc9"
   },
   "resolutions": {
     "angular": "1.4.8"

@@ -31,6 +31,8 @@
     "afterEach": false,
     "expect": false,
     "jasmine": false,
+    /* mapsplugin */
+    "plugin": false,
     /* Angular Mocks */
     "inject": false,
     /* lodash */

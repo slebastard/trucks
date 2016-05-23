@@ -19,6 +19,7 @@ var merge = require('merge-stream');
 var ripple = require('ripple-emulator');
 var wiredep = require('wiredep');
 var karma = require('karma');
+var replace = require('replace');
 
 /**
  * Parse arguments
@@ -27,6 +28,7 @@ var args = require('yargs')
     .alias('e', 'emulate')
     .alias('b', 'build')
     .alias('r', 'run')
+    .alias('p', 'phone')
     // remove all debug messages (console.logs, alerts etc) from release build
     .alias('release', 'strip-debug')
     .default('build', false)
@@ -34,10 +36,11 @@ var args = require('yargs')
     .default('strip-debug', false)
     .argv;
 
-var build = !!(args.build || args.emulate || args.run);
+var build = !!(args.build || args.emulate || args.run || args.phone);
 var emulate = args.emulate;
 var run = args.run;
 var port = args.port;
+var phone = args.phone;
 var stripDebug = !!args.stripDebug;
 var targetDir = path.resolve(build ? 'www' : '.tmp');
 
@@ -98,6 +101,25 @@ gulp.task('styles', function() {
     .on('error', errorHandler);
 });
 
+gulp.task('serve-local', function() {
+  return replace({
+    regex: "https://saladbowl-server.herokuapp.com/",
+    replacement: "http://0.0.0.0:5000/",
+    paths: ['./app/scripts/**/*.js'],
+    recursive: false,
+    silent: false,
+  });
+})
+
+gulp.task('serve-heroku', function() {
+  return replace({
+    regex: "https://0.0.0.0:5000/",
+    replacement: "http://saladbowl-server.herokuapp.com/",
+    paths: ['./app/scripts/**/*.js'],
+    recursive: false,
+    silent: false,
+  });
+})
 
 // build templatecache, copy scripts.
 // if build: concat, minsafe, uglify and versionize
@@ -269,6 +291,11 @@ gulp.task('serve', function() {
   open('http://localhost:' + port + '/');
 });
 
+gulp.task('ionic:phone', plugins.shell.task([
+  'ionic build && adb install -r ' + __dirname + '/platforms/android/build/outputs/apk/android-debug.apk'
+]));
+
+
 // ionic emulate wrapper
 gulp.task('ionic:emulate', plugins.shell.task([
   'ionic emulate ' + emulate + ' --livereload --consolelogs'
@@ -348,5 +375,6 @@ gulp.task('default', function(done) {
     build ? 'noop' : 'serve',
     emulate ? ['ionic:emulate', 'watchers'] : 'noop',
     run ? 'ionic:run' : 'noop',
+    phone ? 'ionic:phone' : 'noop',
     done);
 });
