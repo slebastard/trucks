@@ -14,9 +14,9 @@ angular.module('Trucks')
     $scope.restaurant.dishes.forEach(function(dish) {
       dish.count = 0;
       dish.total = 0;
-      $scope.$watch(dish.count, function(newValue, oldValue, $scope) {
-        dish.total = newValue * $scope.uniquePrice;
-      });
+    });
+    $scope.$watch('restaurant.dishes[0].count', function(newValue) {
+      $scope.restaurant.dishes[0].total = newValue * $scope.uniquePrice;
     });
 
     $scope.incCount = function(dish) {
