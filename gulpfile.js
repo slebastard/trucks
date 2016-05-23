@@ -28,6 +28,7 @@ var args = require('yargs')
     .alias('e', 'emulate')
     .alias('b', 'build')
     .alias('r', 'run')
+    .alias('p', 'phone')
     // remove all debug messages (console.logs, alerts etc) from release build
     .alias('release', 'strip-debug')
     .default('build', false)
@@ -35,10 +36,11 @@ var args = require('yargs')
     .default('strip-debug', false)
     .argv;
 
-var build = !!(args.build || args.emulate || args.run);
+var build = !!(args.build || args.emulate || args.run || args.phone);
 var emulate = args.emulate;
 var run = args.run;
 var port = args.port;
+var phone = args.phone;
 var stripDebug = !!args.stripDebug;
 var targetDir = path.resolve(build ? 'www' : '.tmp');
 
@@ -289,6 +291,11 @@ gulp.task('serve', function() {
   open('http://localhost:' + port + '/');
 });
 
+gulp.task('ionic:phone', plugins.shell.task([
+  'ionic build && adb install -r ' + __dirname + '/platforms/android/build/outputs/apk/android-debug.apk'
+]));
+
+
 // ionic emulate wrapper
 gulp.task('ionic:emulate', plugins.shell.task([
   'ionic emulate ' + emulate + ' --livereload --consolelogs'
@@ -368,5 +375,6 @@ gulp.task('default', function(done) {
     build ? 'noop' : 'serve',
     emulate ? ['ionic:emulate', 'watchers'] : 'noop',
     run ? 'ionic:run' : 'noop',
+    phone ? 'ionic:phone' : 'noop',
     done);
 });

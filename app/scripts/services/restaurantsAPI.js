@@ -4,6 +4,24 @@ angular.module('Trucks')
   .factory('RestaurantsAPI', function RestaurantsAPI($http, $q) {
     var serverURL = 'https://saladbowl-server.herokuapp.com/';
 
+    var get = function(requestURL) {
+      var url = serverURL + requestURL;
+      return $http({
+        method: 'GET',
+        url: url
+      });
+    };
+
+    /*
+    var post = function(requestURL, data) {
+      var url = serverURL + requestURL;
+      return $http({
+        method: 'POST',
+        url: url,
+        data: data
+      });
+    };
+    */
     var testConnection = function() {
       var deferred = $q.defer();
       var promise = deferred.promise;
@@ -51,23 +69,6 @@ angular.module('Trucks')
       };
 
       return promise;
-    };
-
-    var get = function(requestURL) {
-      var url = serverURL + requestURL;
-      return $http({
-        method: 'GET',
-        url: url
-      });
-    };
-
-    var post = function(requestURL, data) {
-      var url = serverURL + requestURL;
-      return $http({
-        method: 'POST',
-        url: url,
-        data: data
-      });
     };
 
     var getFactory = function(url) {
