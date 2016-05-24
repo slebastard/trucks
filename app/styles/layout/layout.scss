@@ -11,3 +11,22 @@ a .card:hover div {
 a .card div {
   text-decoration: none;
 }
+
+.img-card {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  background-color:blue;
+}
+
+.img-card img {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  height: auto;
+  width: 100%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}

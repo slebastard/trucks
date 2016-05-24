@@ -1,13 +1,10 @@
-.header {
-
-}
-
 .dish {
   position: relative;
   width: auto;
   height: 100px;
   overflow: hidden;
 }
+
 .dish img {
   position: absolute;
   left: 50%;
@@ -15,6 +12,24 @@
   height: auto;
   width: 100%;
   -webkit-transform: translate(-50%,-50%);
-      -ms-transform: translate(-50%,-50%);
-          transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+$dish-icon-size: 50px;
+.dish-icon {
+  font-size: 60px;
+  background-color: #E50741;
+  height: $dish-icon-size;
+  width: $dish-icon-size;
+  text-align: center;
+  display: inline-block;
+  border-radius: 10px;
+  color: white;
+}
+
+.dish-icon i {
+  display: block;
+  margin-top: -5px;
+  vertical-align: middle;
 }

@@ -29,26 +29,25 @@
           <p>{{dish.description}}</p>
         </div>
 
-        <div class="item item-image dish" ng-if="dish.imageUrl">
+        <div class="img-card" ng-if="dish.imageUrl">
           <img src="{{dish.imageUrl}}">
         </div>
 
-        <div class="item item-image dish" ng-if="!dish.imageUrl">
+        <div class="img-card" ng-if="!dish.imageUrl">
           <img src="images/dishes/defaultDish.jpg">
         </div>
 
         <div>
-          <p class="item item_icon assertive">
-            <i class="icon ion-android-add" ng-click="incCount(dish)"></i>
-            <i class="icon ion-android-remove" ng-click="decCount(dish)"></i>
-            <i class="icon ion-android-close" ng-click="resetCount(dish)"></i>
+          <p class="item item-icon assertive">
+          <a class="dish-icon" ng-click="incCount(dish)"><i class="icon ion-android-add"></i></a>
+          <a class="dish-icon" ng-click="decCount(dish)"><i class="icon ion-android-remove"></i></a>
+          <a class="dish-icon" ng-click="resetCount(dish)"><i class="icon ion-android-close"></i></a>
           </p>
           <p class="item">
-            <p> {{dish.count}} plates </p>
-            <p> Total: {{dish.total}} € TTC </p>
+          <p> {{dish.count}} plates </p>
+          <p> Total: {{dish.total}} € TTC </p>
           </p>
-          </div>
-        </p>
+        </div>
       </div>
     </div>
   </ion-content>
