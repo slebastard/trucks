@@ -72,7 +72,17 @@ angular.module('Trucks')
     };
 
     var getFactory = function(url) {
-      return function() {return get(url);};
+      return function(params) {
+        var urlWithParams = url;
+        if (params) {
+          urlWithParams += '?';
+          params.forEach(function(index,value) {
+          var paramLine = index + '=' + value + '&';
+          urlWithParams += paramLine;
+        });
+        }
+        return get(url);
+      };
     };
 
     return {

@@ -11,12 +11,18 @@ angular.module('Trucks')
 
     $scope.restaurant = $stateParams.restaurant;
     $scope.uniquePrice = 7.50;
+    $scope.command = [];
     $scope.restaurant.dishes.forEach(function(dish) {
       dish.count = 0;
       dish.total = 0;
+      $scope.$watch(function() {
+        return dish.count;
+      }, function(newValue) {
+      dish.total = newValue * $scope.uniquePrice;
     });
-    $scope.$watch('restaurant.dishes[0].count', function(newValue) {
-      $scope.restaurant.dishes[0].total = newValue * $scope.uniquePrice;
+      $scope.$watch(function() {
+        return dish.count;
+      }, 'makeOrder');
     });
 
     $scope.incCount = function(dish) {
@@ -35,5 +41,11 @@ angular.module('Trucks')
 
     $scope.goBack = function() {
       $ionicHistory.goBack();
+    };
+
+    $scope.makeOrder = function() {
+      $scope.restaurant.dishes.forEach(function(dish) {
+        $scope.order[dish.id] = dish.count;
+      });
     };
   });
