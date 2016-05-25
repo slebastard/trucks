@@ -2,22 +2,54 @@
 
 angular.module('Trucks')
   .controller('SandboxController', function($scope, RestaurantsAPI) {
-    $scope.connection = 'On est pas encore connecté!';
-    $scope.testConnection = function() {
-      RestaurantsAPI.testConnection()
+    $scope.getConnection = 'On est pas encore connecté!';
+    $scope.testGetConnection = function() {
+      RestaurantsAPI.testGetConnection()
         .success(function(result) {
-          $scope.connection = 'Youhou on est connecté!';
-          $scope.data = result.data;
-          $scope.status = result.status;
-          $scope.headers = result.headers;
-          $scope.config = result.config;
+          $scope.getConnection = 'Youhou on est connecté!';
+          $scope.getData = result.data;
+          $scope.getStatus = result.status;
+          $scope.getHeaders = result.headers;
+          $scope.getConfig = result.config;
         })
         .error(function(result) {
-          $scope.connection = 'Oups on n\'a pas réussi à se connecter!';
-          $scope.data = result.data;
-          $scope.status = result.status;
-          $scope.headers = result.headers;
-          $scope.config = result.config;
+          $scope.getConnection = 'Oups on n\'a pas réussi à se connecter!';
+          $scope.getData = result.data;
+          $scope.getStatus = result.status;
+          $scope.getHeaders = result.headers;
+          $scope.getConfig = result.config;
+        });
+    };
+    $scope.postConnection = 'On est pas encore connecté!';
+    $scope.testPostConnection = function() {
+      RestaurantsAPI.testPostConnection()
+        .success(function(result) {
+          $scope.postConnection = 'Youhou on est connecté!';
+          $scope.postData = result.data;
+          $scope.postStatus = result.status;
+          $scope.postHeaders = result.headers;
+          $scope.postConfig = result.config;
+        })
+        .error(function(result) {
+          $scope.postConnection = 'Oups on n\'a pas réussi à se connecter!';
+          $scope.postData = result.data;
+          $scope.postStatus = result.status;
+          $scope.postHeaders = result.headers;
+          $scope.postConfig = result.config;
+        });
+    };
+    $scope.testCommand = function() {
+      RestaurantsAPI.generateCommand({
+        name: 'test ionic',
+        deliveryDate: '2016-05-25T10:55:39.681Z',
+        creationDate: '2016-05-25T10:55:39.681Z',
+        userTel: '+33650544817'
+      })
+        .success(function(result) {
+          $scope.command = result;
+        })
+        .error(function(result) {
+          $scope.command = result;
         });
     };
   });

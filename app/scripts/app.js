@@ -9,8 +9,15 @@
  * Main module of the application.
  */
 
-angular.module('Trucks', ['ionic', 'ngCordova', 'ngResource', 'ngCordovaOauth', 'ionic-native-transitions'])
+angular.module('Trucks', ['ionic', 'ngCordova', 'ngResource', 'ngCordovaOauth', 'ionic-native-transitions', 'ngCookies'])
   .value('version', 'v0.0')
+  .config(['$httpProvider', function($httpProvider) {
+    //$httpProvider.defaults.withCredentials = true;
+  }])
+  .run(['$http', '$cookies', function($http, $cookies) {
+    $cookies.put('csrftoken', 'test token');
+    $http.defaults.headers.post['X-CSRFToken'] = $cookies.get('csrftoken');
+  }])
 
   .run(function($ionicPlatform) {
 

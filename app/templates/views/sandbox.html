@@ -6,12 +6,22 @@
 
     <ion-content>
 
-      <a ng-click="testConnection()">Test connection</a><br/>
-      {{connection}}<br/>
-      data : {{data}}<br/>
-      status : {{status}}<br/>
-      headers : {{headers}}<br/>
-      config : {{config}}<br/>
+      <a ng-click="testGetConnection()">Test get</a><br/>
+      {{getConnection}}<br/>
+      data : {{getData}}<br/>
+      status : {{getStatus}}<br/>
+      headers : {{getHeaders}}<br/>
+      config : {{getConfig}}<br/>
+
+      <a ng-click="testPostConnection()">Test post</a><br/>
+      {{getConnection}}<br/>
+      data : {{postData}}<br/>
+      status : {{postStatus}}<br/>
+      headers : {{postHeaders}}<br/>
+      config : {{postConfig}}<br/>
+
+      <a ng-click="testCommand()">Test command</a><br/>
+      {{command}}
 
     </ion-content>
 
