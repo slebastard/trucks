@@ -2,7 +2,7 @@
 
 angular.module('Trucks')
   .factory('RestaurantsAPI', function RestaurantsAPI($http, $q) {
-    var serverURL = 'http://0.0.0.0:5000/';
+    var serverURL = 'http://localhost:5000/';
 
     var get = function(requestURL, data) {
       var url = serverURL + requestURL;

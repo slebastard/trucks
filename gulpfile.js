@@ -104,7 +104,7 @@ gulp.task('styles', function() {
 gulp.task('serve-local', function() {
   return replace({
     regex: "https://saladbowl-server.herokuapp.com/",
-    replacement: "http://0.0.0.0:5000/",
+    replacement: "http://localhost:5000/",
     paths: ['./app/scripts/services/restaurantsAPI.js'],
     recursive: false,
     silent: false,
@@ -113,8 +113,8 @@ gulp.task('serve-local', function() {
 
 gulp.task('serve-heroku', function() {
   return replace({
-    regex: "https://0.0.0.0:5000/",
-    replacement: "http://saladbowl-server.herokuapp.com/",
+    regex: "http://localhost:5000/",
+    replacement: "https://saladbowl-server.herokuapp.com/",
     paths: ['./app/scripts/services/restaurantsAPI.js'],
     recursive: false,
     silent: false,
