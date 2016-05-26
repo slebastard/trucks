@@ -14,7 +14,6 @@ angular.module('Trucks')
     RestaurantsAPI.getRestaurants()
       .success(function(data) {
         window.localStorage.setItem('restaurantsList', JSON.stringify(data));
-        console.log(window.localStorage.getItem('restaurantsList'));
         $scope.restaurants = JSON.parse(window.localStorage.getItem('restaurantsList')).data;
       });
 

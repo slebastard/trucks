@@ -2,14 +2,21 @@
 
 angular.module('Trucks')
   .factory('RestaurantsAPI', function RestaurantsAPI($http, $q) {
-    var serverURL = 'http://localhost:5000/';
+    var serverURL = 'https://saladbowl-server.herokuapp.com/';
 
     var get = function(requestURL, data) {
       var url = serverURL + requestURL;
       if (typeof data === 'object') {
         url += '?';
         _.forEach(data, function(value, key) {
-          url += key + '=' + value + '&';
+          if (Array.isArray(value)) {
+            value.forEach(function(arrayValue) {
+              url += key + '=' + arrayValue + '&';
+            });
+          }
+          else {
+            url += key + '=' + value + '&';
+          }
         });
       }
       return $http({

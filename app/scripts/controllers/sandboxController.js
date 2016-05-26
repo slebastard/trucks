@@ -42,8 +42,14 @@ angular.module('Trucks')
       RestaurantsAPI.generateCommand({
         name: 'test ionic',
         deliveryDate: '2016-05-25T10:55:39.681Z',
-        creationDate: '2016-05-25T10:55:39.681Z',
-        userTel: '+33650544817'
+        userTel: '+33650544817',
+        restaurantId: 1,
+        dishId: [
+          1
+        ],
+        dishNb: [
+          5
+        ]
       })
         .success(function(result) {
           $scope.command = result;
